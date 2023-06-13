@@ -39,7 +39,20 @@ async function run() {
       const classCollection = client.db('danceDB').collection('allClass');
       const usersCollection = client.db('danceDB').collection('users');
 
-      
+      /* ------Popular Classes Based on Total Students---------- */
+      app.get('/popularCls', async(req, res) => {
+        const query = {};
+        const options = {
+           sort:{"totalStudents" : -1}
+        }
+        const limit = 6;
+        const popularClasses = classCollection.find(query, options).limit(limit);
+        const result =  await popularClasses.toArray();
+        res.send(result)
+      });
+
+
+
 
      
 
@@ -68,3 +81,4 @@ app.get('/about' , (req, res) => {
 app.listen(port , () => {
     console.log(`Our Dancing Guru is running On the PORT:${port}`);
 })
+
