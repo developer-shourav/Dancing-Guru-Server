@@ -10,12 +10,7 @@ const app = express();
 
 
 // Middleware
-const corsConfig = {
-  origin: '*',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-  }
-app.use(cors(corsConfig))
+app.use(cors())
 app.use(express.json())
 
 
