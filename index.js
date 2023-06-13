@@ -38,6 +38,17 @@ async function run() {
 
       const classCollection = client.db('danceDB').collection('allClass');
       const usersCollection = client.db('danceDB').collection('users');
+       
+
+
+      /* ------ All Classes ------- */
+      app.get('/classes', async(req, res) => {
+
+        const classes = classCollection.find();
+        const result =  await classes.toArray();
+        res.send(result)
+      });
+
 
       /* ------Popular Classes Based on Total Students---------- */
       app.get('/popularCls', async(req, res) => {
@@ -51,17 +62,17 @@ async function run() {
         res.send(result)
       });
 
-   /* ------Popular Instructors Based on Total Students---------- */
-   app.get('/popularInstructor', async(req, res) => {
-    const query = {};
-    const options = {
-       sort:{"totalStudents" : -1}
-    }
-    const limit = 6;
-    const popularInstructor = classCollection.find(query, options).limit(limit);
-    const result =  await popularInstructor.toArray();
-    res.send(result)
-  });
+    /* ------Popular Instructors Based on Total Students---------- */
+    app.get('/popularInstructor', async(req, res) => {
+        const query = {};
+        const options = {
+        sort:{"totalStudents" : -1}
+        }
+        const limit = 6;
+        const popularInstructor = classCollection.find(query, options).limit(limit);
+        const result =  await popularInstructor.toArray();
+        res.send(result)
+    });
 
 
      
