@@ -49,6 +49,14 @@ async function run() {
         res.send(result)
       });
 
+      /* ------ All Instructors ------- */
+      app.get('/instructors', async(req, res) => {
+
+        const instructors = usersCollection.find();
+        const result =  await instructors.toArray();
+        res.send(result)
+      });
+
 
       /* ------Popular Classes Based on Total Students---------- */
       app.get('/popularCls', async(req, res) => {
