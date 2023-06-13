@@ -51,8 +51,10 @@ async function run() {
 
       /* ------ All Instructors ------- */
       app.get('/instructors', async(req, res) => {
-
-        const instructors = usersCollection.find();
+        
+        const userRole = 'instructor';
+        const query = {role: userRole};
+        const instructors = usersCollection.find(query);
         const result =  await instructors.toArray();
         res.send(result)
       });
