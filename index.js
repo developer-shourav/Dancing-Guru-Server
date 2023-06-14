@@ -49,8 +49,19 @@ async function run() {
             const result = await usersCollection.insertOne(user);
             res.send(result)
         }
-    });
+     });
 
+
+     /* ---------------Find An User using Email------------- */
+        app.get('/users/:email',  async(req, res) => {
+          const email = req.params.email;
+
+          const query = {userEmail: email};
+          const result = await usersCollection.findOne(query);
+          res.send(result)
+
+      })
+      
 
       /* ------ All Classes ------- */
       app.get('/classes', async(req, res) => {
