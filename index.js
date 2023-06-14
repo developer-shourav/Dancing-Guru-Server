@@ -55,7 +55,7 @@ async function run() {
      /* ---------------Find An User using Email------------- */
         app.get('/users/:email',  async(req, res) => {
           const email = req.params.email;
-          if(!email){
+          if(email === 'abc@gmail.com'){
             res.send({message:'User not exist.'})
           }
 
