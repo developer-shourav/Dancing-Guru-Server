@@ -55,10 +55,15 @@ async function run() {
      /* ---------------Find An User using Email------------- */
         app.get('/users/:email',  async(req, res) => {
           const email = req.params.email;
+          if(email){
+            const query = {userEmail: email};
+            const result = await usersCollection.findOne(query);
+            res.send(result)
+          }
 
-          const query = {userEmail: email};
-          const result = await usersCollection.findOne(query);
-          res.send(result)
+          else{
+            res.send({message:'user not found'})
+          }
 
       })
       
