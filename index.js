@@ -36,6 +36,22 @@ async function run() {
        
 
 
+      /* ---------------Create An User------------- */
+      app.post('/users', async(req, res)  => {
+          
+        const user = req.body;
+        const query = {userEmail : user.userEmail};
+        const existingUser = await usersCollection.findOne(query);
+        if(existingUser){
+            res.send({message:'User Already exist.'})
+        }
+        else{
+            const result = await usersCollection.insertOne(user);
+            res.send(result)
+        }
+    });
+
+
       /* ------ All Classes ------- */
       app.get('/classes', async(req, res) => {
 
