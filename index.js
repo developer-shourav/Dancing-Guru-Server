@@ -53,6 +53,14 @@ async function run() {
         }
      });
 
+      /* ---------------Add A  Class From Instructor------------- */
+      app.post('/addAClass', async(req, res)  => {
+          
+        const addAClass = req.body;
+        const result = await classCollection.insertOne(addAClass);
+        res.send(result)
+     });
+
       /* ---------------Add A Selected Class------------- */
       app.post('/selectedCls', async(req, res)  => {
           
