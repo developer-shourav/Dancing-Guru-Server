@@ -65,7 +65,7 @@ async function run() {
 
         const email = req.params.email;
         const query = {studentEmail: email};
-        const result = await selectedClassCollection.findOne(query);
+        const result = await selectedClassCollection.find(query).toArray();
         res.send(result)
      });
 
