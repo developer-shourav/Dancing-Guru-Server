@@ -60,6 +60,15 @@ async function run() {
         res.send(result)
      });
 
+      /* ---------------Get User all Selected Class------------- */
+      app.post('/selectedCls/:email', async(req, res)  => {
+
+        const email = req.params.email;
+        const query = {studentEmail: email};
+        const result = await selectedClassCollection.findOne(query);
+        res.send(result)
+     });
+
 
      /* ---------------Find An User using Email------------- */
         app.get('/users/:email',  async(req, res) => {
