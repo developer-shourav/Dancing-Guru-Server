@@ -33,6 +33,7 @@ async function run() {
 
       const classCollection = client.db('danceDB').collection('allClass');
       const usersCollection = client.db('danceDB').collection('users');
+      const selectedClassCollection = client.db('danceDB').collection('selectedClass');
        
 
 
@@ -49,6 +50,14 @@ async function run() {
             const result = await usersCollection.insertOne(user);
             res.send(result)
         }
+     });
+
+      /* ---------------Add A Selected Class------------- */
+      app.post('/selectedCls', async(req, res)  => {
+          
+        const selectedClass = req.body;
+        const result = await selectedClassCollection.insertOne(selectedClass);
+        res.send(result)
      });
 
 
