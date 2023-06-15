@@ -34,6 +34,7 @@ async function run() {
       const classCollection = client.db('danceDB').collection('allClass');
       const usersCollection = client.db('danceDB').collection('users');
       const selectedClassCollection = client.db('danceDB').collection('selectedClass');
+      const enrolledClassCollection = client.db('danceDB').collection('enrolledClass');
        
 
 
@@ -59,6 +60,15 @@ async function run() {
         const result = await selectedClassCollection.insertOne(selectedClass);
         res.send(result)
      });
+      /* ---------------Add A Enrolled Class------------- */
+      app.post('/paidCls', async(req, res)  => {
+          
+        const enrolledClass = req.body;
+        const result = await enrolledClassCollection.insertOne(enrolledClass);
+        res.send(result)
+     });
+
+
 
       /* ---------------Get User all Selected Class------------- */
       app.get('/selectedCls/:email', async(req, res)  => {
