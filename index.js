@@ -129,7 +129,13 @@ async function run() {
         res.send(result)
     });
 
-
+ /* ------------------Delete a Selected unpaid Class  ----------- */
+      app.delete ('selectedCls/:id', async(req, res) => {
+        const iD = req.params.id;
+        const query = {_id: new ObjectId(iD)};
+        const result = await selectedClassCollection.deleteOne(query);
+        res.send(result)
+      })
      
 
      
