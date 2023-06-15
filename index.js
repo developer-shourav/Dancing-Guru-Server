@@ -121,6 +121,15 @@ async function run() {
         res.send(result)
       });
 
+      /* ---------------Get User all  Classes of An Instructor------------- */
+      app.get('/classes/:email', async(req, res)  => {
+
+        const email = req.params.email;
+        const query = {studentEmail: email};
+        const result = await classCollection.find(query).toArray();
+        res.send(result)
+     });
+
       /* ------ All Instructors ------- */
       app.get('/instructors', async(req, res) => {
         
