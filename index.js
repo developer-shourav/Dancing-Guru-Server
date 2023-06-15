@@ -61,7 +61,7 @@ async function run() {
      });
 
       /* ---------------Get User all Selected Class------------- */
-      app.post('/selectedCls/:email', async(req, res)  => {
+      app.get('/selectedCls/:email', async(req, res)  => {
 
         const email = req.params.email;
         const query = {studentEmail: email};
