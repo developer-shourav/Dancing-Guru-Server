@@ -79,6 +79,15 @@ async function run() {
         res.send(result)
      });
 
+      /* ---------------Get User all Enrolled Class------------- */
+      app.get('/paidCls/:email', async(req, res)  => {
+
+        const email = req.params.email;
+        const query = {studentEmail: email};
+        const result = await enrolledClassCollection.find(query).toArray();
+        res.send(result)
+     });
+
 
      /* ---------------Find An User using Email------------- */
         app.get('/users/:email',  async(req, res) => {
