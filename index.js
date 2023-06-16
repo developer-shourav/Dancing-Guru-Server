@@ -102,6 +102,13 @@ async function run() {
      });
 
 
+     /* ----------Get All User from user collection--------- */
+     app.get('/users', async (req, res) => {
+      const result = await usersCollection.find().toArray();
+      res.send(result)
+     })
+
+
      /* ---------------Find An User using Email------------- */
         app.get('/users/:email',  async(req, res) => {
           const email = req.params.email;
