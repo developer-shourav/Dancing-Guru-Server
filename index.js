@@ -209,6 +209,25 @@ async function run() {
       res.send(result)
       
     })
+     /* ------------------Update A Class Status ----------- */
+     app.patch('/classesStat/:id', async(req, res) => {
+      const iD = req.params.id;
+      const updatedStatus = req.body;
+      const { newStatus } = updatedStatus;
+      const filter = {_id : new ObjectId(iD)};
+      const options = { upsert: true };
+
+      const updateDoc = {
+        $set: { 
+          status: newStatus
+
+        },
+      };
+
+      const result = await classCollection.updateOne(filter, updateDoc, options);
+      res.send(result)
+      
+    })
      /* ------------------Update Class Feedback ----------- */
      app.patch('/classesFDB/:id', async(req, res) => {
       const iD = req.params.id;
