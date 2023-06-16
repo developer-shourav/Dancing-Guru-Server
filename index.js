@@ -121,6 +121,15 @@ async function run() {
         res.send(result)
       });
 
+       /* ---------------Get  A  Class------------- */
+      app.get('/classes/:id', async(req, res)  => {
+
+        const iD = req.params.id;
+        const query = {_id : new ObjectId(iD)};
+        const result = await classCollection.find(query).toArray();
+        res.send(result)
+     });
+
       /* ------ All Approved Classes ------- */
       app.get('/classesApd', async(req, res) => {
         
