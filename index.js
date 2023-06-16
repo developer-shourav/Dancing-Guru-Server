@@ -152,7 +152,7 @@ async function run() {
 
       /* ------Popular Classes Based on Total Students---------- */
       app.get('/popularCls', async(req, res) => {
-        const query = {};
+        const query ={status:'approved'}
         const options = {
            sort:{"totalStudents" : -1}
         }
