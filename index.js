@@ -121,6 +121,15 @@ async function run() {
         res.send(result)
       });
 
+      /* ------ All Approved Classes ------- */
+      app.get('/classesApd', async(req, res) => {
+        
+        const query ={status:'approved'}
+        const classes = classCollection.find(query);
+        const result =  await classes.toArray();
+        res.send(result)
+      });
+
       /* ---------------Get User all  Classes of An Instructor------------- */
       app.get('/classes/:email', async(req, res)  => {
 
