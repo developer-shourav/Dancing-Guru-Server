@@ -106,7 +106,7 @@ async function run() {
      app.get('/users', async (req, res) => {
       const result = await usersCollection.find().toArray();
       res.send(result)
-     })
+     });
 
 
      /* ---------------Find An User using Email------------- */
@@ -122,7 +122,7 @@ async function run() {
             res.send(result)
           }
 
-      })
+      });
       
 
       /* ------ All Classes ------- */
@@ -215,7 +215,28 @@ async function run() {
       const result = await classCollection.updateOne(filter, updateDoc, options);
       res.send(result)
       
-    })
+    });
+
+
+     /* ------------------Update An User Role ----------- */
+     app.patch('/usersRoll/:id', async(req, res) => {
+      const iD = req.params.id;
+      const updatedRole = req.body;
+      const { newRole } = updatedRole;
+      const filter = {_id : new ObjectId(iD)};
+      const options = { upsert: true };
+
+      const updateDoc = {
+        $set: { 
+          role: newRole
+
+        },
+      };
+
+      const result = await usersCollection.updateOne(filter, updateDoc, options);
+      res.send(result)
+      
+    });
      /* ------------------Update A Class Status ----------- */
      app.patch('/classesStat/:id', async(req, res) => {
       const iD = req.params.id;
@@ -234,7 +255,10 @@ async function run() {
       const result = await classCollection.updateOne(filter, updateDoc, options);
       res.send(result)
       
-    })
+    });
+
+
+
      /* ------------------Update Class Feedback ----------- */
      app.patch('/classesFDB/:id', async(req, res) => {
       const iD = req.params.id;
@@ -253,7 +277,7 @@ async function run() {
       const result = await classCollection.updateOne(filter, updateDoc, options);
       res.send(result)
       
-    })
+    });
 
  /* ------------------Delete a Selected unpaid Class  ----------- */
       app.delete('/selectedCls/:id', async(req, res) => {
@@ -261,7 +285,7 @@ async function run() {
         const query = {_id: new ObjectId(iD)};
         const result = await selectedClassCollection.deleteOne(query);
         res.send(result)
-      })
+      });
      
 
      
@@ -279,10 +303,10 @@ async function run() {
 
 app.get('/' , (req, res) => {
     res.send('Welcome to Dancing Guru')
-})
+});
 app.get('/about' , (req, res) => {
     res.send('Learn About Us')
-})
+});
 
 
 
