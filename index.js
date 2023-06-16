@@ -145,7 +145,7 @@ async function run() {
       });
 
       /* ---------------Get User all  Classes of An Instructor------------- */
-      app.get('/classes/:email', async(req, res)  => {
+      app.get('/classesIns/:email', async(req, res)  => {
 
         const email = req.params.email;
         const query = {instructorEmail: email};
