@@ -174,6 +174,28 @@ async function run() {
         res.send(result)
     });
 
+
+     /* ------------------Update An Item ----------- */
+     app.patch('/classes/:id', async(req, res) => {
+      const iD = req.params.id;
+      const updatedClass = req.body;
+      const { updatedTotalStudents , updatedAvailableSeats } = updatedClass;
+      const filter = {_id : new ObjectId(iD)};
+      const options = { upsert: true };
+
+      const updateDoc = {
+        $set: {
+          availableSeats: updatedAvailableSeats, 
+          totalStudents: updatedTotalStudents
+
+        },
+      };
+
+      const result = await classCollection.updateOne(filter, updateDoc, options);
+      res.send(result)
+      
+    })
+
  /* ------------------Delete a Selected unpaid Class  ----------- */
       app.delete('/selectedCls/:id', async(req, res) => {
         const iD = req.params.id;
