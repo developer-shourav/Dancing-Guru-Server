@@ -204,6 +204,25 @@ async function run() {
       res.send(result)
       
     })
+     /* ------------------Update Class Feedback ----------- */
+     app.patch('/classesFDB/:id', async(req, res) => {
+      const iD = req.params.id;
+      const updatedFeedback = req.body;
+      const { newFeedback } = updatedFeedback;
+      const filter = {_id : new ObjectId(iD)};
+      const options = { upsert: true };
+
+      const updateDoc = {
+        $set: {
+         feedback:newFeedback
+
+        },
+      };
+
+      const result = await classCollection.updateOne(filter, updateDoc, options);
+      res.send(result)
+      
+    })
 
  /* ------------------Delete a Selected unpaid Class  ----------- */
       app.delete('/selectedCls/:id', async(req, res) => {
